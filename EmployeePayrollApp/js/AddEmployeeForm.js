@@ -21,6 +21,26 @@ window.addEventListener("DOMContentLoaded", (event) => {
     output.textContent = salary.value;
   });
 
+  var date = document.getElementById("day");
+    var month = document.getElementById("month");
+    var year = document.getElementById("year");
+    const dateError = document.querySelector(".date-error");
+    date.addEventListener("input", checkDate);
+    month.addEventListener("input", checkDate);
+    year.addEventListener("input", checkDate);
+  
+    function checkDate() {
+      let startDate = Date.parse(
+        year.value + "-" + month.value + "-" + date.value
+      );
+      try {
+        new EmployeePayrollData().startDate = startDate;
+        dateError.textContent = "";
+      } catch (e) {
+        dateError.textContent = e;
+      }
+    }
+
 });
 
 const save = () => {
